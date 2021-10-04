@@ -1,12 +1,13 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Col, Row} from "react-bootstrap";
-import {DataContext} from "../../App";
 import DisplayTopCourses from "./DisplayTopCourses";
+import UseCourses from "../customHooks/useCourses";
 
 const TopCourses = () => {
-    const [courses] = useContext(DataContext)
-    // Here I have Filtered Courses Which Courses Ratings Are 4.4 and Above
+    const [courses] = UseCourses();
+    // Here I have Filtered  Courses Which Courses Ratings Are 4.4 and Above
     const topCourses = courses.filter(course => course.rating >= 4.4)
+
     return (
         <Row className="mt-3">
                 {

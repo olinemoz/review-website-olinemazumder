@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from "react";
+import React from "react";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
@@ -7,37 +7,27 @@ import Courses from "./Components/Courses/Courses";
 import About from "./Components/About/About";
 import NotFound from "./Components/NotFound/NotFound";
 import ContactUs from "./Components/ContactUs/ContactUs";
+import Submitted from "./Components/ContactUs/Submitted";
+import CourseDetails from "./Components/CourseDetails/CourseDetails";
 
-// Context Api Created
-export const DataContext = createContext([])
 
 function App() {
-    const [courses, setCourses] = useState([])
-
-    useEffect(() => {
-        fetch("./data/courses.JSON")
-            .then(response => response.json())
-            .then(data => {
-                setCourses(data)
-            })
-    }, [])
-
     return (
-        // Whole Application Wrapped By Router and Context Api
+        // Whole Application Wrapped By Router
         <Router>
-                <DataContext.Provider value={[courses, setCourses]}>
-                    <Header/>
-                    <Switch>
-                        {/*Route Paths Added*/}
-                        <Route exact path="/" component={Home}/>
-                        <Route path="/home" component={Home}/>
-                        <Route path="/courses" component={Courses}/>
-                        <Route path="/about" component={About}/>
-                        <Route path="/contact-us" component={ContactUs}/>
-                        <Route path="*" component={NotFound}/>
-                    </Switch>
-                    <Footer/>
-                </DataContext.Provider>
+            <Header/>
+            <Switch>
+                {/*Route Paths Added*/}
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/home" component={Home}/>
+                <Route exact path="/courses" component={Courses}/>
+                <Route exact path="/course/:id" component={CourseDetails}/>
+                <Route exact path="/about" component={About}/>
+                <Route exact path="/contact-us" component={ContactUs}/>
+                <Route exact path="/contact/submitted" component={Submitted}/>
+                <Route path="*" component={NotFound}/>
+            </Switch>
+            <Footer/>
         </Router>
     );
 }
