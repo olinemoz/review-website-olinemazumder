@@ -9,7 +9,7 @@ const UseCourses = () => {
                 setCourses(data)
             })
     }, [])
-    return [courses]
+    return [courses,setCourses]
 };
 
 export default UseCourses

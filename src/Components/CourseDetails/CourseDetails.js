@@ -1,6 +1,6 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
-import {Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import Rating from "react-rating";
 import UseCourses from "../customHooks/useCourses";
 
@@ -8,18 +8,18 @@ import UseCourses from "../customHooks/useCourses";
 const CourseDetails = () => {
     const [courses] = UseCourses()
     // console.log("courses default", courses)
-
     const {id} = useParams()
     // console.log(id)
     const filterSingleCourse = courses.filter(course => course.path === id)
     // console.log(filterSingleCourse)
 
+
     return (
         <div style={{marginTop: "70px", marginBottom: "80px"}}>
             {
-                filterSingleCourse.map(course => {
+                filterSingleCourse.map((course, index) => {
                     return (
-                        <Card key={course.key} style={{width: '30rem'}} className="mx-auto shadow-lg">
+                        <Card key={index} style={{width: '30rem'}} className="mx-auto shadow-lg">
                             <Card.Img variant="top" src={course.image} style={{height: "280px"}}/>
                             <Card.Body>
                                 <Card.Title>{course.name}</Card.Title>
@@ -34,6 +34,9 @@ const CourseDetails = () => {
                                             readonly
                                     />
                                 </Card.Text>
+                                <Button variant="primary" onClick={() => alert("Purchase Successfully")}>
+                                    Buy Now
+                                </Button>
                             </Card.Body>
                         </Card>
                     )

@@ -3,7 +3,7 @@ import {Button, Card} from "react-bootstrap";
 import {useHistory} from "react-router-dom";
 
 const AllCourses = (props) => {
-    const {image, name, category, price,path} = props.courses
+    const {image, name, category, price, path} = props.courses
 
     const history = useHistory()
     const handleCourseDetails = () => {
@@ -18,7 +18,8 @@ const AllCourses = (props) => {
                     <span className="fw-bold">Category:</span> {category} <br/>
                     <span className="fw-bold">Price:</span> {price}
                 </Card.Text>
-                <Button onClick={handleCourseDetails} variant="primary" className="d-block mx-auto">View Details</Button>
+                <Button onClick={handleCourseDetails} variant="primary" className="d-block mx-auto">View
+                    Details</Button>
             </Card.Body>
         </Card>
     );
